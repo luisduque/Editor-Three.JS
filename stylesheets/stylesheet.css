@@ -1,0 +1,174 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	box-sizing:border-box;
+}
+body{
+	overflow: hidden;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#App, #commandPanel, #controlPanel, #menubar{
+	display: inline-block;
+}
+
+#App{
+	width: 75%;
+	height: 100%;
+}
+
+
+#commandPanel{
+	box-sizing: border-box;
+	position: absolute;
+	left: 75%;
+	width: 25%;
+	height: 100%;
+	background-color: gray;
+}
+
+#commandPanel div.section .title, .actnBtn, .stitle, .object{
+	width: 100%;
+	padding: 10px 15px;
+	background-color: white;
+	border-bottom: 2px solid #e8e8e8;
+	cursor: pointer;
+	color: #888;
+}
+
+#controlPanel{
+	height: 30px;
+	width: 100%;
+}
+
+#toolsBar, #controlPanel, #commandPanel{
+	background-color: #eeeeee;
+}
+
+#trasladar{
+	background-color: #ffffff;
+	padding: 5px 0 5px 10%;
+}
+
+#trasladar:hover{
+	color: #fff;
+	padding: 5px 0 5px 10%;
+	background-color: #08f;
+}
+
+.actnBtn,.object{
+	background-color: #ffffff;
+	padding: 5px 0 5px 10%;
+}
+.actnBtn{
+	background-color: transparent;
+	padding: 5px 5px 5px 5px;
+}
+
+.sContent{
+	display: none;
+	padding: 10px;
+}
+.stitle{
+	padding: 5px 0 5px 5%;
+	background-color: #ededed;
+}
+.stitle::before{
+	content: "» ";
+}
+.objsP{
+	position: absolute;
+	display: none;
+	padding: 5px 0px;
+	background: #eee;
+	width: 150px;
+}
+.text{
+	position: absolute;
+	display: none;
+	padding: 5px 0px;
+	background: #ededed;
+	width: 1000px;
+}
+#panel {
+    position: absolute;
+    right: 0;
+    top:25px;
+    background-color:#CCC;
+    height:250px;
+    width:0;
+    font: 18px Arial;
+    color: #707275;
+    text-align: center;
+    border-radius: 0 0 0 15px;
+}
+
+#menubar {
+	width: 100%;
+	height: 32px;
+	background: #eeeeee;
+	padding: 0px;
+	margin: 0px;
+	right: 0px;
+	top: 0px;
+}
+
+	#menubar .menu {
+		float: left;
+		cursor: pointer;
+		padding-right: 8px;
+	}
+
+	#menubar .menu.right {
+		float: right;
+		cursor: auto;
+		text-align: right;
+	}
+
+		#menubar .menu .title {
+			display: inline-block;
+			color: #888;
+			margin: 0px;
+			padding: 8px;
+		}
+
+		#menubar .menu .title:hover {
+			display: inline-block;
+			color: #fff;
+			margin: 0px;
+			padding: 8px;
+			background-color: #08f;
+		}
+
+		#menubar .menu .options {
+			position: absolute;
+			display: none;
+			padding: 5px 0px;
+			background: #eee;
+			width: 150px;
+		}
+
+		#menubar .menu:hover .options {
+			display: block;
+
+		}
+
+			#menubar .menu .options .option {
+				color: #666;
+				background-color: transparent;
+				padding: 5px 10px;
+				margin: 0px !important;
+			}
+
+				#menubar .menu .options .option:hover {
+					
+					background-color: #08f;
+				}
+
+				#menubar .menu .options .option:hover .actnBtn{
+					color: #fff;
+				}
+
+				#menubar .menu .options .option:active {
+					color: #666;
+					background: transparent;
+				}

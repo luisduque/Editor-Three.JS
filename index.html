@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width">
+
+	<title>Proyecto 1 Compugráfica 2015-1</title>
+
+	<meta name="description" content="Proyecto Compugráfica 2015-1">
+	<meta name="author" content="David Sanchez, David Soto , Camilo Cifuentes, Luis Andrés Duque">
+
+	<link rel="stylesheet" href="./stylesheets/stylesheet.css">
+
+	<script src="./js/libs/jquery-1.11.1.js"></script>
+ 	<script src="./js/libs/three.js"></script>
+ 	<script src="./js/libs/OrbitControls.js"></script>
+ 	<script src="./js/libs/Stats.js"></script>
+ 	<script src="./js/libs/threex.dynamictexture.js"></script>
+ 	<script src="./js/utils.js"></script>
+ 	<script src="./js/interfaceProyecto.js"></script>
+ 	<script src="./js/matrix4.js"></script>
+
+</head>
+<body>
+
+	<div id="menubar">
+		<div class = "menu">
+			<div class = "title">Add</div>
+			<div class = "options">
+	 			<ul>
+	 				<li class = "option">
+	 					<div class="actnBtn" data-action="createBox">Crear Cubo</div>
+	 				</li>
+	 				<li class = "option">
+	 					<div class="actnBtn" data-action="createPlane">Crear Plano</div>
+	 				</li>
+	 				<li class = "option">
+	 					<div class="actnBtn" data-action="createCircle">Crear Circulo</div>
+	 				</li>
+	 				<li class = "option">
+	 					<div class="actnBtn" data-action="createCylinder">Crear Cilindro</div> 						
+	 				</li>
+	 				<li class = "option">
+	 					<div class="actnBtn" data-action="createSphere">Crear Esfera</div>
+	 				</li> 				
+	 				<li class = "option">
+	 					<div class="actnBtn" data-action="createIcosahedron">Crear Icosahedro</div>
+	 				</li>
+	 				<li class = "option">
+	 					<div class="actnBtn" data-action="createTorus">Crear Torus</div>
+	 				</li>
+	 			</ul>
+ 			</div>		
+ 		</div>
+		
+		<div class="menu">
+			<div class = "title">Edit</div>
+				<div class = "options">
+					<ul>
+						<div class = "option">
+							<div class = "actnBtn" data-action="deleteMe">Delete</div>
+						</div>
+					</ul>
+									
+				</div>
+		</div>
+	</div>
+
+	<div id="App"></div>
+
+ 	<div id="commandPanel">
+ 		<div style="overflow:scroll;height:1000px;width:290px;">
+
+ 		<div class="section">
+ 			<div class="title">Scene</div>
+ 			<div class="sContent">
+ 				<div class="actns">		
+ 				<div class="objsP">
+ 					<p class="stitle">Objetos</p>
+ 				</div>
+                </div>
+
+ 			</div>
+ 		</div>	
+
+ 		<div class="section">
+ 			<div class="title">Transformaciones</div>
+ 			<div class="sContent">
+ 				<div class="actns">
+ 					<p class="stitle">Acciones</p>
+ 					<div class="actnBtn" id ="trasladar"data-action="translate">Trasladar</div>
+ 					<div class="actnBtn" id ="trasladar"data-action="scale">Escalar</div>
+ 					<div class="actnBtn" id ="trasladar"data-action="rotate">Rotar</div>
+ 					<div class="actnBtn" id ="trasladar"data-action="addToTransform">Transformar varios objetos</div>
+ 					<div class="actnBtn" id ="trasladar"data-action="createMatrizM">Crear matriz de transformacion</div>
+ 				</div>
+ 				</div>
+ 			</div>
+ 		
+ 		<div class = "section">
+ 			<div class = "title">Renderer</div>
+ 			<div class="sContent">
+ 				<div class="actns">
+ 					<p class="stitle">Typre</p>
+ 					<input type="text" value="hola" id="renderertype" /> 
+ 
+ 					
+
+ 		</div>
+ 		</div>
+        <div class = "section">
+                  <div class="actns">
+                    <div class="actnBtn" id ="trasladar"data-action="modificarAtributos">Modificar atributos Figura</div>
+                    </div>
+        </div>
+
+ 		<div class = "section">
+ 			<div class = "title">Mesh</div>
+ 			<div class="sContent">
+ 				<div class="actns">
+ 					<p class="stitle">UUID</p>
+ 					<input type="text" value="uuid" id="UUID" /></p><br><HR><br>
+ 					<p class="stitle">Nombre</p>
+ 					<input type="text" value="nombre" id="nombre" /></p><br><HR><br>
+ 					<p class="stitle">Parent</p>
+ 					<input type="text" value="parent" id="Parent" /></p><br><HR><br>
+ 					<p class="stitle">Posicion</p>
+ 					X:<input type="text" value="X" id="x" /></p><br><br>
+ 					Y:<input type="text" value="Y" id="y" /></p><br><br>
+ 					Z:<input type="text" value="Z" id="z" /></p><br><HR><br>
+ 					<p class="stitle">Rotacion</p>
+ 					X:<input type="text" value="X" id="xr" /></p><br><br>
+ 					Y:<input type="text" value="Y" id="yr" /></p><br><br>
+ 					Z:<input type="text" value="Z" id="zr" /></p><br><HR><br>
+ 					<p class="stitle">Escalacion</p>
+ 					X:<input type="text" value="X" id="xs" /></p><br><br>
+ 					Y:<input type="text" value="Y" id="ys" /></p><br><br>
+ 					Z:<input type="text" value="Z" id="zs" /></p><br><HR><br>
+ 					<p class="stitle">visible</p></p><br><HR><br>
+ 					Visible:<input type="text" value="visible" id="visible" /></p><br><HR><br>
+ 					<p class="stitle">User data</p>
+ 					<input type="text" value="user data" id="user" /> 
+ 					</div>
+
+ 		</div>
+ 		<div class = "section">
+ 			        <div class = "title">Material</div>
+ 			        <div class="sContent">
+ 				    <div class="actns">
+ 				    	<div style="overflow:scroll;height:1000px;width:600px;">
+ 					<p>UUID:<input type="text" value="uuid" id="UUID3" /></p><br><HR><br>
+ 					<p>Nombre:<input type="text" value="nombre" id="nombre3" /></p><br><HR><br>
+ 					<p>Typo:<input type="text" value="type" id="type" /></p><br><HR><br>
+ 					<p>Color:<input type="text" value="color" id="color" /></p><br><HR><br>					
+ 		
+ 					<p>Vertex colors:<input type="text" value="vertex colors" id="vertexc" /></p><br><HR> <br>
+ 					<p>Skininng:<input type="text" value="skininng" id="skininng" /></p><br><br>
+ 					<p>Map:<input type="text" value="map" id="map" /></p><br><HR> <br>
+ 					<p>Alpha map:<input type="text" value="alpha" id="alpha" /></p><br><HR> <br>
+ 					<p>Light map:<input type="text" value="light" id="light" /></p><br><HR> <br>
+ 					<p>Specular map:<input type="text" value="specularm" id="specularm" /></p><br><HR> <br>
+ 					<p>Env map:<input type="text" value="env" id="env" /></p><br><HR> <br>
+ 					<p>Side:<input type="text" value="side" id="side" /></p><br><HR> <br>
+ 					<p>Shading:<input type="text" value="shading" id="shading" /></p><br><br>
+ 					<p>Blending:<input type="text" value="blending" id="blending" /></p><br><br>
+ 					<p>Opacity:<input type="text" value="opacity" id="opacity" /></p><br><br>
+ 					<p>Transparent:<input type="text" value="transparent" id="transparent" /></p><br><br>
+ 					<p>Wireframe:<input type="text" value="wireframe" id="wireframe" /></p><br><br>
+ 					</div>
+ 					
+ 					</div> 
+ 					</div>
+ 		            <div class = "section">
+ 			        <div class = "title">Geometry</div>
+ 			        <div class="sContent">
+ 				    <div class="actns">
+ 					    <div style="overflow:scroll;height:1000px;width:600px;">
+ 					
+ 					<p>UUID:<input type="text" value="id" id="UUID2" /></p><br><HR><br>
+ 					<p>Nombre:<input type="text" value="nombre" id="nombre2" /></p><br><HR><br>
+ 					<p>Vertices:<input type="text" value="vertices" id="vertices" /></p><br><HR><br>
+ 					<p>Faces:<input type="text" value="faces" id="faces" /></p><br><HR><br>					
+ 					
+ 					<p>Width:<input type="text" value="width" id="wd" /></p><br><HR><br> 
+ 					<p>Height:<input type="text" value="height" id="ht" /></p><br><HR><br> 
+ 					<p>Depth:<input type="text" value="depth" id="dt" /></p><br><HR><br> 
+ 					
+ 					<p>Widht segments:<input type="text" value="width segments" id="wds" /></p><br><HR> <br>
+ 					<p>Height segments:<input type="text" value="height segmets" id="hts" /></p><br><HR> <br>
+ 					<p>Depth segments:<input type="text" value="depth segments" id="dts" /></p><br><br>
+ 					
+ 					</div> 
+ 					</div> 
+ 					</div>
+
+
+
+ 		
+ 	</div>
+ 	</div>
+
+
+ 	<div id="controlPanel"></div>
+
+
+	<script src="./js/srcProyect.js"></script>
+	<script>
+  
+			//Cuando todo esté cargado, ejecute
+ 		$(function(){
+ 			webGLStart();
+
+ 			/*
+	 		Listeners!
+	 		*/
+	 		//Busque la clase section que contenga la clase titulo
+	 		$(".section .title").click(function(){
+	 			$(this).next().slideToggle();
+
+	 		});
+
+
+	 		$('.actnBtn').click(function(){
+	 			var obj = window[$(this).data("action")+"I"]();
+
+
+	 			if(obj){
+	 				$('.section .title ').next().append("<div class='object' data-id='"+obj.id+"'>"+obj.name+"</div>");
+	 					alert(obj.id);
+
+	 				$(".object").unbind();
+
+	 				$(".object").click(function(){
+			 			var r = confirm("Desea eliminar este objeto?");
+			 			if(r){
+			 				deleteMe($(this),$(this).data("id"));
+			 			}
+			 		});
+	 			}
+	 		});
+ 		});
+
+ 		
+
+	</script>
+</body>
+</html>
